@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -40,8 +40,12 @@
       font-size: 20px;
     }
 
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
     nav a {
-      margin-left: 20px;
       text-decoration: none;
       color: #333;
       font-weight: bold;
@@ -50,6 +54,12 @@
 
     nav a:hover {
       color: #3b5bfd;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
     }
 
     main.hero, section {
@@ -100,6 +110,8 @@
       height: 100%;
       z-index: 1;
       animation: blob 8s infinite;
+      background: #c1d3ff;
+      border-radius: 50%;
     }
 
     .foto-profil {
@@ -163,18 +175,51 @@
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .hero-text h1 {
+        font-size: 28px;
+      }
+
+      .hero-text p {
+        font-size: 14px;
       }
 
       .hero-img {
-        margin-top: 30px;
-        width: 100%;
-        height: auto;
+        margin-top: 20px;
+        width: 220px;
+        height: 220px;
+      }
+
+      .foto-profil {
+        width: 150px;
+        height: 150px;
+      }
+
+      nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+      }
+
+      nav.active {
+        display: flex;
       }
 
       nav a {
-        display: block;
         margin: 10px 0;
+      }
+
+      .menu-toggle {
+        display: block;
       }
     }
   </style>
@@ -183,6 +228,9 @@
 
   <header>
     <div class="logo">FMR</div>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
     <nav>
       <a href="#home">Home</a>
       <a href="#about">Tentang</a>
@@ -201,7 +249,7 @@
     </div>
 
     <div class="hero-img">
-      <div class="blob-bg" style="background: #c1d3ff; border-radius: 50%;"></div>
+      <div class="blob-bg"></div>
       <img src="foto.jpg" class="foto-profil" alt="Foto profil Faisal Mohamad Riski">
     </div>
   </main>
@@ -255,6 +303,13 @@
           link.style.color = "#3b5bfd";
         }
       });
+    });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
     });
   </script>
 
